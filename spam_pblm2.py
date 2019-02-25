@@ -7,24 +7,24 @@ Created on Sat Nov 17 04:21:15 2018
 
 
 def make_Dictionary(train_dir):
-    for path in os.listdir(train_dir):
-        for name in files:
-            emails = [os.path.join(train_dir, name) for name in os.listdir(train_dir)]
-            all_words = []
-            for mail in emails:
-                with open(mail) as m:
-                     for i,line in enumerate(m):
-                         if i == 2:
-                             words = line.split()
-                             all_words += words
-            dictionary = Counter(all_words)
-            list_to_remove = dictionary.keys()
-            for item in list(list_to_remove):
-                if item.isalpha() == False:
-                    del dictionary[item]
-                elif len(item) == 1:
-                    del dictionary[item]
-            dictionary = dictionary.most_common(3000)
+#for path in os.listdir(train_dir):
+#for name in files:
+    emails = [os.path.join(train_dir, name) for name in os.listdir(train_dir)]
+    all_words = []
+    for mail in emails:
+        with open(mail) as m:
+            for i,line in enumerate(m):
+                if i == 2:
+                    words = line.split()
+                    all_words += words
+    dictionary = Counter(all_words)
+    list_to_remove = dictionary.keys()
+    for item in list(list_to_remove):
+        if item.isalpha() == False:
+            del dictionary[item]
+        elif len(item) == 1:
+            del dictionary[item]
+    dictionary = dictionary.most_common(3000)
     return dictionary
 
 def extract_features(mail_dir):
