@@ -9,14 +9,17 @@ Created on Sat Nov 17 04:21:15 2018
 def make_Dictionary(train_dir):
 #for path in os.listdir(train_dir):
 #for name in files:
-    emails = [os.path.join(train_dir, name) for name in os.listdir(train_dir)]
+    emails = [os.path.join(train_dir, n) for n in os.listdir(train_dir)]
+    
     all_words = []
+    
     for mail in emails:
         with open(mail) as m:
             for i,line in enumerate(m):
                 if i == 2:
                     words = line.split()
                     all_words += words
+                   
     dictionary = Counter(all_words)
     list_to_remove = dictionary.keys()
     for item in list(list_to_remove):
@@ -54,10 +57,12 @@ from sklearn.metrics import confusion_matrix
 
 train_dir = 'D:\\karthick\\study\\ML\\MachineLearning\\try\\train-mails'
 dictionary = make_Dictionary(train_dir)
+print('4')
 
 train_labels = np.zeros(702)
 train_labels[351:701] = 1
 train_matrix = extract_features(train_dir)
+print('5')
 
 
 model1 = MultinomialNB()
